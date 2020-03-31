@@ -33,7 +33,7 @@ setup(
         'sql_grader',
     ],
     install_requires=[
-        'Django<2.0',
+        'Django',
         'XBlock',
         'xblock-utils',
     ],

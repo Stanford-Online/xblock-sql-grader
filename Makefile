@@ -45,7 +45,7 @@ requirements: requirements_js requirements_py  ## Install all required packages
 
 .PHONY: requirements_py
 requirements_py:  # Install required python packages
-	pip install tox==3.7.0
+	pip install tox
 
 .PHONY: requirements_js
 requirements_js:  # Install required javascript packages
