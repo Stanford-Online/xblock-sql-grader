@@ -192,7 +192,7 @@ class XBlockDataMixin:
         help=_('Which initial dataset/database to be used for queries'),
         default='rating',
         scope=Scope.content,
-        values=DATABASES.keys(),
+        values=list(DATABASES),
     )
     answer_query = String(
         display_name=_('Answer Query'),
