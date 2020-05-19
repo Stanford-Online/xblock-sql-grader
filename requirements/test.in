@@ -1,2 +1,7 @@
+# Requirements for test runs
+-c constraints.txt
+
+-r base.txt               # Core dependencies for the cookiecutter
+
 coverage
 edx-opaque-keys
