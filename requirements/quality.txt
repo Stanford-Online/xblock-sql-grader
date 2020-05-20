@@ -5,11 +5,10 @@
 #    make upgrade
 #
 astroid==2.4.1            # via pylint
-coverage==5.1             # via -r requirements/quality.in
 isort==4.3.21             # via pylint
 lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via pylint
-pep8==1.7.1               # via -r requirements/quality.in
+pycodestyle==2.6.0        # via -r requirements/quality.in
 pylint==2.5.2             # via -r requirements/quality.in
 six==1.14.0               # via astroid
 toml==0.10.1              # via pylint

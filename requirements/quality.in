@@ -1,6 +1,5 @@
 # Requirements for code quality checks
 -c constraints.txt
 
-coverage
-pep8
+pycodestyle
 pylint
