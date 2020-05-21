@@ -63,6 +63,7 @@ class SqlGrader(
         self.raw_response = query
         score, actual, expected, error, comparison = self._calculate_score()
         self.set_score(score)
+        self._publish_grade(score)
         return {
             'comparison': comparison,
             'result': actual,
