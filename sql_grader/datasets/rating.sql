@@ -1,5 +1,6 @@
 /*
 https://s3-us-west-2.amazonaws.com/prod-c2g/db/Winter2013/files/rating.sql
+https://s3-us-west-2.amazonaws.com/prod-c2g/db/Winter2013/files/viewmovie.sql
 */
 
 /* Delete the tables if they already exist */
@@ -45,3 +46,20 @@ insert into Rating values(206, 107, 3, '2011-01-15');
 insert into Rating values(206, 106, 5, '2011-01-19');
 insert into Rating values(207, 107, 5, '2011-01-20');
 insert into Rating values(208, 104, 3, '2011-01-02');
+
+/* Create the views */
+create view LateRating as
+  select distinct R.mID, title, stars, ratingDate
+  from Rating R, Movie M
+  where R.mID = M.mID
+  and ratingDate > '2011-01-20';
+
+create view HighlyRated as
+  select mID, title
+  from Movie
+  where mID in (select mID from Rating where stars > 3);
+
+create view NoRating as
+  select mID, title
+  from Movie
+  where mID not in (select mID from Rating);
