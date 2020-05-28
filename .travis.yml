@@ -11,8 +11,7 @@ env:
   - TOX_ENV=csslint
   - TOX_ENV=django22
   - TOX_ENV=eslint
-  - TOX_ENV=pycodestyle
-  - TOX_ENV=pylint
+  - TOX_ENV=quality
 before_install:
   - "pip install -U pip"
   - export BOTO_CONFIG=/dev/null
@@ -20,8 +19,7 @@ cache:
   directories:
     - $HOME/.cache/pip
 install:
-  - "make requirements"
-  - "pip install codecov"
+  - make travis_requirements
 script:
   - tox -e $TOX_ENV
 after_success: codecov
