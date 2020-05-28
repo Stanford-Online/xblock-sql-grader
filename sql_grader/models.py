@@ -257,5 +257,6 @@ class XBlockDataMixin:
             'max_score': int(self.max_score()),
             'error_class': error_class,
             'raw_response': self.raw_response,
+            'verify_query': self.verify_query,
         })
         return context

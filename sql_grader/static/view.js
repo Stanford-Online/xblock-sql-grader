@@ -98,6 +98,8 @@ function SqlGrader(runtime, element) {
         $correctness.text(text);
         refreshData('expected', result);
         refreshData('result', result);
+        $('.sql_verify_query', element).show();
+        $('.sql_data', element).show();
     }
     $submit.click(function () {
         var query = myCodeMirror.getValue();
