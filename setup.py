@@ -1,8 +1,6 @@
 """
 Setup the XBlock
 """
-from __future__ import absolute_import
-
 from setuptools import setup
 import os
 
