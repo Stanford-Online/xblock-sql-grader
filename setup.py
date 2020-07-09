@@ -21,6 +21,7 @@ def package_data(pkg, roots):
         pkg: data,
     }
 
+
 def load_requirements(*requirements_paths):
     """
     Load all requirements from the specified requirements files.
@@ -43,9 +44,10 @@ def is_requirement(line):
     """
     return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
+
 setup(
     name='xblock-sql-grader',
-    version='0.0.1',
+    version='0.1',
     description='SQL Grader XBlock',  # TODO: write a better description.
     license='AGPLv3',
     packages=[
