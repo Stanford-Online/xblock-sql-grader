@@ -4,12 +4,7 @@ Handle data modeling for the XBlock
 import os
 import sqlite3
 
-from django.utils.translation import ugettext_lazy as _
 import pkg_resources
-
-from xblock.fields import Boolean
-from xblock.fields import Scope
-from xblock.fields import String
 
 
 class SqlProblem:
@@ -23,10 +18,12 @@ class SqlProblem:
     answer_result = None
     is_ordered = True
 
+    # pylint: disable=too-many-arguments
     def __init__(
             self,
-            database,
-            answer_query,
+            database=None,
+            answer_query=None,
+            dataset=None,
             verify_query=None,
             is_ordered=True,
     ):
@@ -34,11 +31,13 @@ class SqlProblem:
         Initialize variables
         """
         self.database = database
+        if dataset:
+            self.database = create_database(dataset)
         self.is_ordered = is_ordered
         self.answer_query = answer_query
         self.verify_query = verify_query
         self.answer_result, _ = SqlProblem.run_query(
-            database,
+            self.database,
             answer_query,
             verify_query,
         )
@@ -165,98 +164,3 @@ def create_database(database_name):
     contents = resource_string(pathname)
     database = SqlProblem.create_database_from_sql(contents)
     return database
-
-
-# Memoize the seed databases
-# to avoid continually loading from disk
-DATABASES = {
-    key: create_database(key)
-    for key in all_datasets()
-}
-
-
-class XBlockDataMixin:
-    """
-    Mixin XBlock field data
-    """
-    # pylint: disable=too-few-public-methods
-
-    display_name = String(
-        display_name=_('Display Name'),
-        help=_('The display name for this component.'),
-        default=_('SQL Problem'),
-        scope=Scope.content,
-    )
-    dataset = String(
-        display_name=_('Dataset'),
-        help=_('Which initial dataset/database to be used for queries'),
-        default='rating',
-        scope=Scope.content,
-        values=list(DATABASES),
-    )
-    answer_query = String(
-        display_name=_('Answer Query'),
-        help=_('A correct response SQL query'),
-        default='',
-        scope=Scope.content,
-        multiline_editor=True,
-    )
-    verify_query = String(
-        display_name=_('Verify Query'),
-        help=_(
-            'A secondary verification SQL query, to be used if the '
-            'answer_query modifies the database (UPDATE, INSERT, DELETE, etc.)'
-        ),
-        default='',
-        scope=Scope.content,
-        multiline_editor=True,
-    )
-    is_ordered = Boolean(
-        display_name=_('Is Ordered?'),
-        help=_('Should results be in order?'),
-        default=False,
-        scope=Scope.content,
-    )
-    editable_fields = [
-        'answer_query',
-        'dataset',
-        'display_name',
-        'verify_query',
-        'is_ordered',
-        'prompt',
-        'weight',
-    ]
-    prompt = String(
-        display_name=_('Prompt'),
-        help=_('Explanatory text to accompany the problem'),
-        default='',
-        scope=Scope.content,
-    )
-    raw_response = String(
-        display_name=_('Submission Query'),
-        help=_('A Submission Query'),
-        default='',
-        scope=Scope.user_state,
-    )
-
-    def provide_context(self, context):  # pragma: no cover
-        """
-        Build a context dictionary to render the student view
-        """
-        context = context or {}
-        context = dict(context)
-        error_class = ''
-        if not bool(self.score) and bool(self.raw_response):
-            error_class = 'error'
-        context.update({
-            'display_name': self.display_name,
-            'prompt': self.prompt,
-            'answer': self.raw_response,
-            'score': self.score,
-            'score_weighted': int(self.score * self.weight),
-            'max_score': int(self.max_score()),
-            'error_class': error_class,
-            'raw_response': self.raw_response,
-            'verify_query': self.verify_query,
-        })
-        return context

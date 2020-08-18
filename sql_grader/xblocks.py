@@ -7,9 +7,8 @@ from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 from .mixins.dates import EnforceDueDates
 from .mixins.fragment import XBlockFragmentBuilderMixin
-from .mixins.grading import Scorable
+from .mixins.grading import Scorable, XBlockDataMixin
 from .mixins.scenario import XBlockWorkbenchMixin
-from .models import XBlockDataMixin
 
 
 def _(text):
