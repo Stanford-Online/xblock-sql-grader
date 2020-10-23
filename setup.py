@@ -1,7 +1,7 @@
 """
 Setup the XBlock
 """
-from setuptools import setup
+from setuptools import setup, find_packages
 import os
 
 
@@ -14,6 +14,7 @@ def package_data(pkg, roots):
     """
     data = []
     for root in roots:
+        data.append(root)
         for dirname, _, files in os.walk(os.path.join(pkg, root)):
             for fname in files:
                 data.append(os.path.relpath(os.path.join(dirname, fname), pkg))
@@ -47,12 +48,10 @@ def is_requirement(line):
 
 setup(
     name='xblock-sql-grader',
-    version='0.1',
+    version='0.2',
     description='SQL Grader XBlock',  # TODO: write a better description.
     license='AGPLv3',
-    packages=[
-        'sql_grader',
-    ],
+    packages=find_packages(exclude=('sql_grader.tests')),
     install_requires=load_requirements('requirements/base.in'),
     entry_points={
         'xblock.v1': [

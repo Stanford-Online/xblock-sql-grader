@@ -61,6 +61,11 @@
         {% if verify_query %}
         <div class="sql_verify_query">
           {% trans 'To check your data modification statement, we ran the following query after your modification:' %}
+          {% if modification_query %}
+          <pre>
+            {{ modification_query }}
+          </pre>
+          {% endif %}
           <pre>
             {{ verify_query }}
           </pre>
