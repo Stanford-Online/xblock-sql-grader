@@ -65,7 +65,7 @@ class SqlProblem:
 
         This only needs run once, at startup.
         """
-        with open(path_sql, 'r') as sql:
+        with open(path_sql) as sql:
             query = sql.read()
         connection = cls.create_database_from_sql(query)
         return connection
