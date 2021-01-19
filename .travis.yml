@@ -5,15 +5,16 @@ addons:
 language: python
 sudo: false
 python:
-  - 3.5
-  - 3.8
+  - '3.8'
 env:
   - TOX_ENV=csslint
-  - TOX_ENV=django22
   - TOX_ENV=eslint
   - TOX_ENV=quality
+  - TOX_ENV=django22
+  - TOX_ENV=django30
+  - TOX_ENV=django31
 before_install:
-  - "pip install -U pip"
+  - pip install -U pip
   - export BOTO_CONFIG=/dev/null
 cache:
   directories:
