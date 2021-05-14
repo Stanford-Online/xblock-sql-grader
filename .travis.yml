@@ -20,7 +20,7 @@ cache:
   directories:
     - $HOME/.cache/pip
 install:
-  - make travis_requirements
+  - make requirements_ci
 script:
   - tox -e $TOX_ENV
 after_success: codecov

@@ -47,8 +47,9 @@ requirements: requirements_js requirements_py  ## Install all required packages
 requirements_py:  # Install required python packages
 	pip install -r requirements/base.txt
 
-.PHONY: travis_requirements
-travis_requirements:  requirements  # Install required python packages
+.PHONY: requirements_ci
+requirements_ci:  requirements  # Install required python packages
+	pip install -U pip
 	pip install -r requirements/travis.txt
 
 .PHONY: requirements_js
