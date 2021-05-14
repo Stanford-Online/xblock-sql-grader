@@ -36,6 +36,14 @@ clean:  ## Remove build artifacts
 	find . -name '*.pyc' -delete
 	find . -name __pycache__ -delete
 
+.PHONY: ci.test
+ci.test: requirements_ci
+ifneq ($(TOX_ENV),)
+	tox -e "$(TOX_ENV)"
+else
+	tox -p all
+endif
+
 .PHONY: quality
 quality: requirements  # Run all quality checks
 	tox -e csslint,eslint,pycodestyle,pylint
