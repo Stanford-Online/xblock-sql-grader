@@ -4,18 +4,21 @@ Mixin grading-related functionality
 import logging
 import os.path
 
+# pylint: disable=wrong-import-order
+# We shouldn't need this pylint pragma, but we do...
+# Otherwise, it complains about the code jail import,
+# despite it also being a third-party package.
+from codejail.safe_exec import safe_exec
+from codejail.safe_exec import SafeExecException
 from django.utils.translation import ugettext_lazy as _
-
-from codejail.safe_exec import safe_exec, SafeExecException
-
 from xblock.fields import Boolean
 from xblock.fields import Float
 from xblock.fields import Integer
 from xblock.fields import Scope
 from xblock.fields import String
-
 from xblock.scorable import ScorableXBlockMixin
 from xblock.scorable import Score
+# pylint: enable=wrong-import-order
 
 from ..problem import all_datasets
 
