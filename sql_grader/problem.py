@@ -15,7 +15,9 @@ class SqlProblem:
     dataset = None
     answer_query = None
     verify_query = None
+    modification_query = None
     answer_result = None
+    answer_error = None
     is_ordered = True
 
     # pylint: disable=too-many-arguments
@@ -25,6 +27,7 @@ class SqlProblem:
             answer_query=None,
             dataset=None,
             verify_query=None,
+            modification_query=None,
             is_ordered=True,
     ):
         """
@@ -36,20 +39,30 @@ class SqlProblem:
         self.is_ordered = is_ordered
         self.answer_query = answer_query
         self.verify_query = verify_query
-        self.answer_result, _ = SqlProblem.run_query(
+        self.modification_query = modification_query
+        self.answer_result, self.answer_error = SqlProblem.run_query(
             self.database,
             answer_query,
             verify_query,
+            modification_query,
         )
 
     def attempt(self, query):
         """
         Attempt to answer the problem with the provided query
         """
+        if self.answer_error:
+            return (
+                None,
+                None,
+                'Problem setup incorrectly: {}'.format(self.answer_error),
+                False
+            )
         submission_result, error = SqlProblem.run_query(
             self.database,
             query,
             self.verify_query,
+            self.modification_query,
         )
         comparison = SqlProblem.compare_rows(
             self.answer_result,
@@ -93,26 +106,54 @@ class SqlProblem:
         return destination
 
     @classmethod
-    def run_query(cls, source, query, verify_query=None):
+    def run_query(cls, source, query, verify_query=None,
+                  modification_query=None):
         """
-        Execute the provided SQL query against a copy of the database
+        Execute the provided SQL queries against a copy of the database.
         """
-        def run(database, query):
+        def run(database, query, is_single_query):
             result = []
             message = None
             with database as connection:
                 try:
-                    for row in connection.execute(query):
+                    if is_single_query:
+                        executor_func = connection.execute
+                    else:
+                        executor_func = connection.executescript
+                    rows = executor_func(query)
+                    # connection.executescript doesn't return anything, so the
+                    # following loop would be a no-op in such cases.
+                    for row in rows:
                         result.append(row)
                 except Exception as error:  # pylint: disable=broad-except
                     result = None
                     message = str(error)
             return result, message
+
         database = cls.clone_database(source)
-        result, error = run(database, query)
+
+        # SELECT statements must be run as a single query to be able to
+        # collect the results. When there's no verify_query in the problem,
+        # we assume the SELECT statement must be in `query` and therefore
+        # `query` must be run as a single query.
+        is_single_query = not verify_query
+        result, error = run(database, query, is_single_query=is_single_query)
+        if error:
+            return None, error
+
         if verify_query:
-            result, _ = run(database, verify_query)
-        return result, error
+            if modification_query:
+                _, error = run(database, modification_query,
+                               is_single_query=False)
+                if error:
+                    return None, 'modification_query: {}'.format(error)
+
+            result, error = run(database, verify_query,
+                                is_single_query=True)
+            if error:
+                return None, 'verify_query: {}'.format(error)
+
+        return result, None
 
     @staticmethod
     def compare_rows(expected, actual, is_ordered=True):
@@ -124,8 +165,8 @@ class SqlProblem:
         if len(expected) != len(actual):
             return False
         if not is_ordered:
-            expected = sorted(expected)
-            actual = sorted(actual)
+            expected = sorted(expected, key=str)
+            actual = sorted(actual, key=str)
         comparison = all(
             row_expected == row_actual
             for row_expected, row_actual in zip(expected, actual)
