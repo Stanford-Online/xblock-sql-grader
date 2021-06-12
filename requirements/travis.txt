@@ -6,59 +6,59 @@
 #
 appdirs==1.4.4
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   virtualenv
-certifi==2020.12.5
+certifi==2021.5.30
     # via requests
 chardet==4.0.0
     # via requests
 codecov==2.1.11
-    # via -r travis.in
-coverage==5.3.1
+    # via -r requirements/travis.in
+coverage==5.5
     # via codecov
-distlib==0.3.1
+distlib==0.3.2
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   virtualenv
 filelock==3.0.12
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
     #   virtualenv
 idna==2.10
     # via requests
-packaging==20.8
+packaging==20.9
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
 pluggy==0.13.1
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
 py==1.10.0
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
 pyparsing==2.4.7
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   packaging
 requests==2.25.1
     # via codecov
-six==1.15.0
+six==1.16.0
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
     #   virtualenv
 toml==0.10.2
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
-tox==3.20.1
-    # via -r tox.txt
+tox==3.23.1
+    # via -r requirements/tox.txt
 urllib3==1.26.5
     # via requests
-virtualenv==20.2.2
+virtualenv==20.4.7
     # via
-    #   -r tox.txt
+    #   -r requirements/tox.txt
     #   tox
