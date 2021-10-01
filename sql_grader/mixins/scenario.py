@@ -62,7 +62,7 @@ class XBlockWorkbenchMixin:
         Gather scenarios to be displayed in the workbench
         """
         module = cls.__module__
-        module = module.split('.')[0]
+        module = module.split('.', maxsplit=1)[0]
         directory = pkg_resources.resource_filename(module, 'scenarios')
         files = _find_files(directory)
         scenarios = _read_files(files)

@@ -16,6 +16,7 @@ jobs:
         - django22
         - django30
         - django31
+        - django32
     steps:
     - uses: actions/checkout@v2
     - name: setup python
