@@ -54,7 +54,6 @@ class XBlockWorkbenchMixin:
     """
     Provide a default test workbench for the XBlock
     """
-    # pylint: disable=too-few-public-methods
 
     @classmethod
     def workbench_scenarios(cls):

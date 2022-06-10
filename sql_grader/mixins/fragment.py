@@ -27,7 +27,6 @@ class XBlockFragmentBuilderMixin:
 
         This should generally be overriden by child classes.
         """
-        # pylint: disable=no-self-use
         context = context or {}
         context = dict(context)
         return context
