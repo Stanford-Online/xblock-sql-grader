@@ -31,7 +31,6 @@ class SqlGrader(
     """
     A custom submission type to evaluate SQL queries
     """
-    # pylint: disable=too-many-ancestors
 
     loader = ResourceLoader(__name__)
     public_dir = 'static'

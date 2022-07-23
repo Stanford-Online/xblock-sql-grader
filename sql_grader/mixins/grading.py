@@ -165,7 +165,6 @@ class XBlockDataMixin:
     """
     Mixin XBlock field data
     """
-    # pylint: disable=too-few-public-methods
 
     display_name = String(
         display_name=_('Display Name'),

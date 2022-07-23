@@ -4,7 +4,7 @@ Mixin date-related functionality
 import datetime
 
 
-class EnforceDueDates:  # pylint: disable=too-few-public-methods
+class EnforceDueDates:
     """
     xBlock Mixin to allow xblocks to check the due date
     (taking the graceperiod into account) of the
