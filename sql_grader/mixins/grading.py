@@ -52,7 +52,7 @@ submission_result, answer_result, error, comparison = SqlProblem(
 
 """
     # example from edx-platform's use of codejail:
-    # https://github.com/edx/edx-platform/blob/master/common/lib/capa/capa/capa_problem.py#L887
+    # https://github.com/openedx/edx-platform/blob/master/common/lib/capa/capa/capa_problem.py#L887
     # we have to include the path to the entire sql_grader package.
     python_path = [os.path.abspath(
         os.path.join(

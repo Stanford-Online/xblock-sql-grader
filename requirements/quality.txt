@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
--e git+https://github.com/edx/codejail.git@3.0.0#egg=codejail
+-e git+https://github.com/openedx/codejail.git@3.0.0#egg=codejail
     # via -r requirements/base.txt
 appdirs==1.4.4
     # via

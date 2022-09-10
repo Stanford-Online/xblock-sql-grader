@@ -5,4 +5,4 @@ Django
 XBlock
 xblock-utils
 # TODO: Change this once codejail is published to pypi
--e git+https://github.com/edx/codejail.git@3.0.0#egg=codejail
+-e git+https://github.com/openedx/codejail.git@3.0.0#egg=codejail
