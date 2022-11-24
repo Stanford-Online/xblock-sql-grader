@@ -93,7 +93,7 @@ def is_requirement(line):
 
 setup(
     name='xblock-sql-grader',
-    version='0.3.0',
+    version='0.3.1',
     description='SQL Grader XBlock',  # TODO: write a better description.
     license='AGPLv3',
     packages=find_packages(exclude=('sql_grader.tests')),
