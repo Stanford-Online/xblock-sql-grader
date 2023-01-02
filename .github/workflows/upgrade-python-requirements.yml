@@ -11,7 +11,7 @@ on:
         default: 'master'
 
 jobs:
-  call-upgrade-python-requirements-workflow:
+  upgrade_requirements:
     uses: openedx/.github/.github/workflows/upgrade-python-requirements.yml@master
     with:
       branch: ${{ github.event.inputs.branch || 'master' }}
