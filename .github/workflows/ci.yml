@@ -1,9 +1,15 @@
 ---
-name: validate changes
+name: Python CI
+
 on:
+  push:
+    branches: [master]
   pull_request:
+    branches:
+    - '**'
+
 jobs:
-  validate:
+  run_tests:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
