@@ -6,6 +6,8 @@ import re
 
 from setuptools import find_packages, setup
 
+README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+
 
 def package_data(pkg, roots):
     """
@@ -96,6 +98,8 @@ setup(
     version='0.3.1',
     description='SQL Grader XBlock',  # TODO: write a better description.
     license='AGPLv3',
+    long_description=README,
+    long_description_content_type='text/x-rst',
     packages=find_packages(exclude=('sql_grader.tests')),
     install_requires=load_requirements('requirements/base.in'),
     entry_points={
@@ -110,6 +114,7 @@ setup(
             'scenarios/*.xml',
             'static',
             'templates/*.html',
+            'translations',
         ]
     ),
     classifiers=[
