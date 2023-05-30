@@ -9,3 +9,6 @@ package-lock.json
 sdk/
 venv/
 .idea/
+
+# Translations
+sql_grader/conf/locale/*/LC_MESSAGES/*
