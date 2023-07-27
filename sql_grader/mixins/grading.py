@@ -10,7 +10,7 @@ import os.path
 # despite it also being a third-party package.
 from codejail.safe_exec import safe_exec
 from codejail.safe_exec import SafeExecException
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from xblock.fields import Boolean
 from xblock.fields import Float
 from xblock.fields import Integer

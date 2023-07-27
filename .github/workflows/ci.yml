@@ -19,10 +19,8 @@ jobs:
         - csslint
         - eslint
         - quality
-        - django22
-        - django30
-        - django31
         - django32
+        - django42
     steps:
     - uses: actions/checkout@v2
     - name: setup python

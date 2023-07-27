@@ -95,7 +95,7 @@ def is_requirement(line):
 
 setup(
     name='xblock-sql-grader',
-    version='0.3.1',
+    version='0.4.0',
     description='SQL Grader XBlock',  # TODO: write a better description.
     license='AGPLv3',
     long_description=README,
@@ -120,10 +120,8 @@ setup(
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
-        'Framework :: Django :: 2.2',
-        'Framework :: Django :: 3.0',
-        'Framework :: Django :: 3.1',
         'Framework :: Django :: 3.2',
+        'Framework :: Django :: 4.2',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
