@@ -1,0 +1,85 @@
+{% load i18n %}
+<div class="sql_grader_block xmodule_display xmodule_CapaModule">
+    <h3 class="problem-header">{{display_name}}</h3>
+    <div class="problem-progress">
+    {% if max_score > 0 %}
+        {% blocktrans count counter=score_weighted %}
+            {{score_weighted}}/{{max_score}} point (graded)
+        {% plural %}
+            {{score_weighted}}/{{max_score}} points (graded)
+        {% endblocktrans %}
+    {% else %}
+        {% trans '0 points (ungraded)' %}
+    {% endif %}
+    </div>
+    <div class="problem">
+        <p>
+            {{prompt}}
+        </p>
+        <form>
+            <span>
+                <strong>{% trans 'Note:' %}</strong>
+                {% trans 'Your queries are executed using SQLite, so you must conform to the SQL constructs supported by SQLite.' %}
+            </span>
+            <textarea rows="4" cols="50">{{raw_response}}</textarea>
+            <div>
+                <span class="capa-message">
+                    {% trans 'Press ESC then TAB or click outside of the code editor to exit' %}
+                </span>
+            </div>
+            <div class="action">
+                <div class="submit-attempt-container">
+                    <button class="submit btn-brand" type="button" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True">
+                        <span class="submit-label">{% trans 'Submit' %}</span>
+                    </button>
+                </div>
+                <div class="problem-action-buttons-wrapper">
+                    <span class="problem-action-button-wrapper">
+                        <button type="button" class="show problem-action-btn btn-default btn-small">
+                          <span class="icon fa fa-info-circle" aria-hidden="true"></span>
+                          <span class="show-label">{% trans 'Show Answer' %}</span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div>
+            <p class="correctness {{error_class}} grader-status">
+            {% if raw_response %}
+                {% if score %}
+                    {% trans 'Correct' %}
+                {% else %}
+                    {% trans 'Incorrect' %}
+                {% endif %}
+            {% else %}
+                {% trans 'Unanswered' %}
+            {% endif %}
+            </p>
+        </div>
+        <div class="capa_alert user_alert">
+        </div>
+        {% if verify_query %}
+        <div class="sql_verify_query">
+          {% trans 'To check your data modification statement, we ran the following query after your modification:' %}
+          {% if modification_query %}
+          <pre>
+            {{ modification_query }}
+          </pre>
+          {% endif %}
+          <pre>
+            {{ verify_query }}
+          </pre>
+        </div>
+        {% endif %}
+        <div class="sql_data result">
+            <span>{% trans 'Your Query Result:' %}</span>
+            <em class="message"></em>
+            <div class="tabular"></div>
+        </div>
+        <div class="sql_data expected">
+            <span>{% trans 'Expected Query Result:' %}</span>
+            <em class="message"></em>
+            <div class="tabular"></div>
+        </div>
+    </div>
+</div>

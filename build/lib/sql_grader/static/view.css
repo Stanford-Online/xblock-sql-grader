@@ -1,0 +1,22 @@
+.sql_grader_block .sql_data {
+  display: none;
+  margin: 50px 25px;
+}
+.sql_grader_block .sql_data .tabular {
+  margin-top: 10px;
+}
+.sql_grader_block .sql_data .tabular table,
+.sql_grader_block .sql_data .tabular tr,
+.sql_grader_block .sql_data .tabular td {
+  border: 1px solid black;
+}
+.sql_grader_block .sql_verify_query {
+  display: none;
+  margin-top: 10px;
+}
+.sql_grader_block .problem-action-buttons-wrapper {
+  display: none;
+}
+.sql_grader_block .CodeMirror {
+  border: 1px solid black;
+}
