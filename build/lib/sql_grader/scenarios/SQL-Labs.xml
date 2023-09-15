@@ -1,0 +1,266 @@
+<sequence_demo>
+    <vertical_demo>
+        <sql_grader
+            dataset="rating"
+            display_name="Q1"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the titles of all movies directed by Steven Spielberg."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q2"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find all years that have a movie that received a rating of 4 or 5, and sort them in increasing order."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q3"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the titles of all movies that have no ratings."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q4"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Some reviewers didn't provide a date with their rating. Find the names of all reviewers who have ratings with a NULL value for the date."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q5"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Write a query to return the ratings data in a more readable format: reviewer name, movie title, stars, and ratingDate. Also, sort the data, first by reviewer name, then by movie title, and lastly by number of stars."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q6"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For all cases where the same reviewer rated the same movie twice and gave it a higher rating the second time, return the reviewer's name and the title of the movie."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q7"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For each movie that has at least one rating, find the highest number of stars that movie received. Return the movie title and number of stars. Sort by movie title."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q8"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For each movie, return the title and the 'rating spread', that is, the difference between highest and lowest ratings given to that movie. Sort by rating spread from highest to lowest, then by movie title."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q9"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the difference between the average rating of movies released before 1980 and the average rating of movies released after 1980. (Make sure to calculate the average rating for each movie, then the average of those averages for movies before 1980 and movies after. Don't just calculate the overall average rating before and after 1980.)"
+            weight="0"
+        />
+    </vertical_demo>
+    <vertical_demo>
+        <html_demo>
+            <p>
+                You've started a new movie-rating website, and you've
+                been collecting data on reviewers' ratings of various
+                movies. There's not much data yet, but you can still try
+                out some interesting queries. Here's the schema:
+            </p>
+            <p>
+                Movie ( mID, title, year, director )
+                <br />
+                English: There is a movie with ID number <em>>mID</em>,
+                a <em>title</em>, a release <em>year</em>, and a
+                <em>director</em>.
+            </p>
+            <p>
+                Reviewer ( rID, name)
+                <br />
+                English: The reviewer with ID number <em>rID</em> has a
+                certain <em>name</em>.
+            </p>
+            <p>
+                Rating ( rID, mID, stars, ratingDate )
+                <br />
+                English: The reviewer <em>rID</em> gave the movie
+                <em>mID</em> a number of <em>stars</em> rating (1-5) on
+                a certain <em>ratingDate</em>.
+            </p>
+            <p>
+                Your queries will run over a small data set conforming
+                to the schema.
+                <a href="/static/moviedata.html" target="_blank">
+                    View the database
+                </a>.
+                (You can also
+                <a target="_blank" href="https://s3-us-west-2.amazonaws.com/prod-c2g/db/Winter2013/files/rating.sql">
+                    download the schema and data
+                </a>
+                .)
+            </p>
+            <p>
+                <strong>Instructions: </strong>
+                <span>
+                    Each problem asks you to write a query in SQL. To
+                    run your query against our back-end sample database
+                    using SQLite, click the "Submit" button. You will
+                    see a display of your query result and the expected
+                    result. If the results match, your query will be
+                    marked "correct".  You may run as many queries as
+                    you like for each question.
+                </span>
+            </p>
+            <p>
+                <strong>Important Notes:</strong>
+            </p>
+            <ul>
+                <li>
+                    Your queries are executed using SQLite, so you must
+                    conform to the SQL constructs supported by SQLite.
+                </li>
+                <li>
+                    Unless a specific result ordering is asked for, you
+                    can return the result rows in any order.
+                </li>
+                <li>
+                    <i>You are to translate the English into a SQL query
+                    that computes the desired result over all possible
+                    databases.</i> All we actually check is that your
+                    query gets the right answer on the small sample
+                    database. Thus, even if your solution is marked as
+                    correct, it is possible that your query does not
+                    correctly reflect the problem at hand. (For example,
+                    if we ask for a complex condition that requires
+                    accessing all of the tables, but over our small data
+                    set in the end the condition is satisfied only by
+                    Star Wars, then the query "select title from Movie
+                    where title = 'Star Wars'" will be marked correct
+                    even though it doesn't reflect the actual question.)
+                    Circumventing the system in this fashion will get
+                    you a high score on the exercises, but it won't help
+                    you learn SQL. On the other hand, an incorrect
+                    attempt at a general solution is unlikely to produce
+                    the right answer, so you shouldn't be led astray by
+                    our checking system.
+                </li>
+            </ul>
+            <p>
+                You may perform these exercises as many times as you
+                like, so we strongly encourage you to keep working with
+                them until you complete the exercises with full credit.
+            </p>
+            <hr />
+        </html_demo>
+        <sql_grader
+            dataset="rating"
+            display_name="Q1"
+            answer_query="SELECT DISTINCT(re.name) FROM Rating ra JOIN Movie m ON ra.mID = m.mID JOIN Reviewer re ON re.rID = ra.rID WHERE m.title = 'Gone with the Wind';"
+            is_ordered="False"
+            prompt="Find the names of all reviewers who rated Gone with the Wind."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q2"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q3"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Return all reviewer names and movie names together in a single list, alphabetized. (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing &quot;The&quot;.)"
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q4"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the titles of all movies not reviewed by Chris Jackson."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q5"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For all pairs of reviewers such that both reviewers gave a rating to the same movie, return the names of both reviewers. Eliminate duplicates, don't pair reviewers with themselves, and include each pair only once. For each pair, return the names in the pair in alphabetical order."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q6"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For each rating that is the lowest (fewest stars) currently in the database, return the reviewer name, movie title, and number of stars."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q7"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="List movie titles and average ratings, from highest-rated to lowest-rated. If two or more movies have the same average rating, list them in alphabetical order."
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q8"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the names of all reviewers who have contributed three or more ratings. (As an extra challenge, try writing the query without HAVING or without COUNT.)"
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q9"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Some directors directed more than one movie. For all such directors, return the titles of all movies directed by them, along with the director name. Sort by director name, then movie title. (As an extra challenge, try writing the query both with and without COUNT.)"
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q10"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the movie(s) with the highest average rating.  Return the movie title(s) and average rating. (Hint: This query is more difficult to write in SQLite than other systems; you might think of it as finding the highest average rating and then choosing the movie(s) with that average rating.)"
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q11"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="Find the movie(s) with the lowest average rating.  Return the movie title(s) and average rating. (Hint: This query may be more difficult to write in SQLite than other systems; you might think of it as finding the lowest average rating and then choosing the movie(s) with that average rating.)"
+            weight="0"
+        />
+        <sql_grader
+            dataset="rating"
+            display_name="Q12"
+            answer_query="SELECT title FROM Movie where Director = 'Steven Spielberg';"
+            is_ordered="False"
+            prompt="For each director, return the director's name together with the title(s) of the movie(s) they directed that received the highest rating among all of their movies, and the value of that rating. Ignore movies whose director is NULL."
+            weight="0"
+        />
+    </vertical_demo>
+</sequence_demo>
